@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="../mBot/mBotCustomizeApp/mBotCustomizeAppMessages/mBotCustomizeAppMessages.js"></script>
+    <script src="../mBot/mBotCustomizeApp/mBotCustomizeAppUi/mBotCustomizeUiHtmlIds.js"></script>
+    <script src="../mBot/mBotMessages/mBotMessages.js"></script>
+    <script src="../mBot/mBotMessages/mBotPreparedMessages.js"></script>
+    <script src="../mBot/mBotDo/mBotSpeak.js"></script>
+    <script src="../mBot/mBotDo/mBotDo.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="script.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .row::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+
+      [class*="col-"] {
+        float: left;
+        padding: 15px;
+      }
+
+      html {
+        font-family: "Lucida Sans", sans-serif;
+      }
+
+      .header {
+        background-color: #0099cc;
+        color: #ffffff;
+        padding: 15px;
+      }
+
+      .menu ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .menu li {
+        padding: 8px;
+        margin-bottom: 7px;
+        background-color: #33b5e5;
+        color: #ffffff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+
+      .menu li:hover {
+        background-color: #0099cc;
+      }
+
+      .aside {
+        background-color: #33b5e5;
+        padding: 15px;
+        color: #ffffff;
+        text-align: center;
+        font-size: 14px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #0099cc;
+        color: #ffffff;
+        text-align: center;
+        font-size: 12px;
+        padding: 15px;
+      }
+
+      /* For mobile phones: */
+      [class*="col-"] {
+        width: 100%;
+      }
+
+      @media only screen and (min-width: 600px) {
+        /* For tablets: */
+        .col-s-1 {
+          width: 8.33%;
+        }
+        .col-s-2 {
+          width: 16.66%;
+        }
+        .col-s-3 {
+          width: 25%;
+        }
+        .col-s-4 {
+          width: 33.33%;
+        }
+        .col-s-5 {
+          width: 41.66%;
+        }
+        .col-s-6 {
+          width: 50%;
+        }
+        .col-s-7 {
+          width: 58.33%;
+        }
+        .col-s-8 {
+          width: 66.66%;
+        }
+        .col-s-9 {
+          width: 75%;
+        }
+        .col-s-10 {
+          width: 83.33%;
+        }
+        .col-s-11 {
+          width: 91.66%;
+        }
+        .col-s-12 {
+          width: 100%;
+        }
+      }
+      @media only screen and (min-width: 768px) {
+        /* For desktop: */
+        .col-1 {
+          width: 8.33%;
+        }
+        .col-2 {
+          width: 16.66%;
+        }
+        .col-3 {
+          width: 25%;
+        }
+        .col-4 {
+          width: 33.33%;
+        }
+        .col-5 {
+          width: 41.66%;
+        }
+        .col-6 {
+          width: 50%;
+        }
+        .col-7 {
+          width: 58.33%;
+        }
+        .col-8 {
+          width: 66.66%;
+        }
+        .col-9 {
+          width: 75%;
+        }
+        .col-10 {
+          width: 83.33%;
+        }
+        .col-11 {
+          width: 91.66%;
+        }
+        .col-12 {
+          width: 100%;
+        }
+      }
+
+      .text-pink {
+        color: #ff66a3;
+      }
+
+      .btn-pink {
+        background-color: #ff66a3;
+        color: white;
+        border: none;
+        transition: background-color 0.3s;
+      }
+
+      .btn-pink:hover {
+        background-color: #ff3385;
+      }
+
+      .card {
+        border: none;
+        border-radius: 10px;
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      .footer {
+        background-color: #ff66a3;
+        /* border-top: 2px solid #ff66a3; */
+      }
+
+      .footer .text-pink {
+        font-size: 1rem;
+      }
+      .glass {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      .glass:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+    </style>
+  </head>
+  <body id="homePageBody" onLoad="mBotDo('loadTest','testPageBody', 'start')">
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="background-color: #ff66a3"
+    >
+      <a class="navbar-brand" style="color: white" href="#">KnowDem</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link text-white" href="#" onclick="showHome()"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+      </div>
+    </nav>
+
+    <div
+    id="homeContent"
+    class="container flex-column justify-content-center align-items-center min-vh-100"
+    style="padding: 80px"
+  >
+    <div class="row">
+      <div class="col-md-7 mr-4">
+        <h2 class="text-pink">Introduction</h2>
+        <p>
+          Which is to say KNOW so much about DEMENTIA so that we reach a stage of NO DEMENTIA in this world  
+          <h2 style="color: #ff66a3;"> Our Objective</h2>
+          <p>Our objective is to create a web application which will be a Global Virtual Ecosystem to help admiral nurse and care givers. We want to open possibilities for social innovation by enabling anyone from aywhere to help the person with Dementia</p>
+        </p>
+      </div>
+      <div class="col-md-4 glass">
+        <h2 class="text-pink">Login / Sign Up</h2>
+        <form>
+          <div class="form-group">
+            <label for="email" class="text-pink">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Enter email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password" class="text-pink">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Password"
+            />
+          </div>
+          <button type="submit" class="btn btn-pink btn-block" id="login" ><a href="./afterLogin.html">Login</a></button>
+          <button type="button" class="btn btn-outline-pink btn-block mt-2">
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    
+    <footer class="footer mt-auto py-3 text-center">
+      <div class="container">
+        <span class="text-white">© KnowDem</span>
+      </div>
+    </footer>
+    <!-- <div class="col-12 col-s-9">
+    <h1>KnowDem Assessment - Question 2</h1>
+    <p>Q2. What month is it ? </p>
+    <p><textarea></textarea> </p> 
+  </div> -->
+
+    <!--div class="col-3 col-s-12">
+    <div class="aside">
+      <h2>What?</h2>
+      <p>Chania is a city on the island of Crete.</p>
+      <h2>Where?</h2>
+      <p>Crete is a Greek island in the Mediterranean Sea.</p>
+      <h2>How?</h2>
+      <p>You can reach Chania airport from all over Europe.</p>
+    </div>
+  </div-->
+  </body>
+  <script>
+    const questions = [
+      "What is your favorite color?",
+      "What is your favorite food?",
+      "What is your favorite hobby?",
+      "What is your favorite book?",
+      "What is your favorite movie?",
+      "What is your favorite song?",
+      "What is your favorite sport?",
+      "What is your favorite season?",
+      "What is your favorite animal?"
+    ];
+
+    let currentQuestionIndex = 0;
+
+    function showQuestion() {
+      document.getElementById("question").innerText =
+        questions[currentQuestionIndex];
+
+        
+
+    }
+
+    function nextQuestion() {
+      const answer = document.getElementById("answer").value;
+      console.log(`Answer to question ${currentQuestionIndex + 1}: ${answer}`);
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        showQuestion();
+        document.getElementById("answer").value = "";
+      } else {
+        alert("You have completed the assessment!");
+      }
+    }
+
+    // Show the first question on page load
+    
+    function login(){
+      const email = document.getElementById('email')
+      const password = document.getElementById('password')
+
+      if(!email.value || !password.value){
+        alert('Fill all the details')
+      }else{
+        if(email.value === "abc@email.com" && password.value === "abc"){
+          console.log(email,password);
+          window.location.href = '/afterLogin.html'
+        }
+      }
+    }
+    window.onload = showQuestion;
+    function showHome() {
+      document.getElementById("assessment").classList.add("d-none");
+      document.getElementById("camera").classList.add("d-none");
+      document.getElementById("homeContent").classList.remove("d-none");
+      document.getElementById("photoCarousel").classList.add("d-none");
+
+      document.getElementById("camera").classList.remove("flex");
+    }
+    function showAssessment() {
+      document.getElementById("homeContent").classList.add("d-none");
+      document.getElementById("camera").classList.add("d-none");
+      document.getElementById("assessment").classList.remove("d-none");
+      document.getElementById("photoCarousel").classList.add("d-none");
+
+      document.getElementById("camera").classList.remove("flex");
+    }
+
+    function showCamera() {
+      document.getElementById("assessment").classList.add("d-none");
+      document.getElementById("homeContent").classList.add("d-none");
+      document.getElementById("camera").classList.remove("d-none");
+      document.getElementById("photoCarousel").classList.add("d-none");
+      document.getElementById("camera").classList.add("flex");
+    }
+
+    function showScrapBook() {
+      document.getElementById("assessment").classList.add("d-none");
+      document.getElementById("homeContent").classList.add("d-none");
+      document.getElementById("camera").classList.add("d-none");
+      document.getElementById("photoCarousel").classList.remove("d-none");
+    }
+    const videoElement = document.getElementById("videoElement");
+    const startButton = document.getElementById("startButton");
+    const stopButton = document.getElementById("stopButton");
+    let stream;
+
+    // Function to start the camera
+    async function startCamera() {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: true,
+        });
+        videoElement.srcObject = stream;
+      } catch (err) {
+        console.error("Error accessing media devices.", err);
+      }
+    }
+
+    // Function to stop the camera
+    function stopCamera() {
+      if (stream) {
+        const tracks = stream.getTracks();
+        tracks.forEach((track) => track.stop());
+        videoElement.srcObject = null;
+      }
+    }
+
+    // Event listeners for buttons
+    startButton.addEventListener("click", startCamera);
+    stopButton.addEventListener("click", stopCamera);
+  </script>
+</html>

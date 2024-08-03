@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Speech Recognition Example</h1>
+    <p id="question"></p>
+    <button onclick="nextQuestion()">Next</button>
+    <button onclick="askQuestion()">Read Question</button>
+    <button onclick="startRecognition()">Answer Question</button>
+    <textarea id="response" rows="4" cols="50"></textarea>
+
+    <script>
+      const questions = [
+        "What is your name?",
+        "How old are you?",
+        "Where are you from?",
+        "What is your favorite color?",
+      ];
+      let currentQuestionIndex = 0;
+      const responses = [];
+
+      function displayQuestion() {
+        document.getElementById("question").innerText =
+          questions[currentQuestionIndex];
+        askQuestion();
+      }
+
+      function askQuestion() {
+        const questionText = document.getElementById("question").innerText;
+        const speech = new SpeechSynthesisUtterance(questionText);
+        window.speechSynthesis.speak(speech);
+      }
+
+      function startRecognition() {
+        if (!("webkitSpeechRecognition" in window)) {
+          alert("Your browser doesn't support speech recognition. Try Chrome.");
+          return;
+        }
+
+        const recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = "en-US";
+
+        recognition.onstart = function () {
+          console.log("Voice recognition started. Speak into the microphone.");
+        };
+
+        recognition.onresult = function (event) {
+          const transcript = event.results[0][0].transcript;
+          document.getElementById("response").value = transcript;
+          responses.push({
+            question: questions[currentQuestionIndex],
+            answer: transcript,
+          });
+        };
+
+        recognition.onerror = function (event) {
+          console.error("Speech recognition error", event.error);
+        };
+
+        recognition.onend = function () {
+          console.log("Voice recognition ended.");
+        };
+
+        recognition.start();
+      }
+
+      function nextQuestion() {
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++;
+          document.getElementById("response").value = "";
+          displayQuestion();
+        } else {
+          alert("You have completed all questions.");
+          console.log("Responses:", responses);
+        }
+      }
+
+      // Display the first question when the page loads
+      document.addEventListener("DOMContentLoaded", (event) => {
+        displayQuestion();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!-- <script src="../mBot/mBotCustomizeApp/mBotCustomizeAppMessages/mBotCustomizeAppMessages.js"></script>
+    <script src="../mBot/mBotCustomizeApp/mBotCustomizeAppUi/mBotCustomizeUiHtmlIds.js"></script> -->
+    <script src="../mBot/mBotMessages/mBotMessages.js"></script>
+    <script src="../mBot/mBotMessages/mBotPreparedMessages.js"></script>
+    <script src="mBotSpeak.js"></script>
+    <script src="mBotDo.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="script.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .row::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+
+      [class*="col-"] {
+        float: left;
+        padding: 15px;
+      }
+
+      html {
+        font-family: "Lucida Sans", sans-serif;
+      }
+
+      .header {
+        background-color: #0099cc;
+        color: #ffffff;
+        padding: 15px;
+      }
+
+      .menu ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .menu li {
+        padding: 8px;
+        margin-bottom: 7px;
+        background-color: #33b5e5;
+        color: #ffffff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+
+      .menu li:hover {
+        background-color: #0099cc;
+      }
+
+      .aside {
+        background-color: #33b5e5;
+        padding: 15px;
+        color: #ffffff;
+        text-align: center;
+        font-size: 14px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #0099cc;
+        color: #ffffff;
+        text-align: center;
+        font-size: 12px;
+        padding: 15px;
+      }
+
+      /* For mobile phones: */
+      [class*="col-"] {
+        width: 100%;
+      }
+
+      @media only screen and (min-width: 600px) {
+        /* For tablets: */
+        .col-s-1 {
+          width: 8.33%;
+        }
+        .col-s-2 {
+          width: 16.66%;
+        }
+        .col-s-3 {
+          width: 25%;
+        }
+        .col-s-4 {
+          width: 33.33%;
+        }
+        .col-s-5 {
+          width: 41.66%;
+        }
+        .col-s-6 {
+          width: 50%;
+        }
+        .col-s-7 {
+          width: 58.33%;
+        }
+        .col-s-8 {
+          width: 66.66%;
+        }
+        .col-s-9 {
+          width: 75%;
+        }
+        .col-s-10 {
+          width: 83.33%;
+        }
+        .col-s-11 {
+          width: 91.66%;
+        }
+        .col-s-12 {
+          width: 100%;
+        }
+      }
+      @media only screen and (min-width: 768px) {
+        /* For desktop: */
+        .col-1 {
+          width: 8.33%;
+        }
+        .col-2 {
+          width: 16.66%;
+        }
+        .col-3 {
+          width: 25%;
+        }
+        .col-4 {
+          width: 33.33%;
+        }
+        .col-5 {
+          width: 41.66%;
+        }
+        .col-6 {
+          width: 50%;
+        }
+        .col-7 {
+          width: 58.33%;
+        }
+        .col-8 {
+          width: 66.66%;
+        }
+        .col-9 {
+          width: 75%;
+        }
+        .col-10 {
+          width: 83.33%;
+        }
+        .col-11 {
+          width: 91.66%;
+        }
+        .col-12 {
+          width: 100%;
+        }
+      }
+
+      .text-pink {
+        color: #ff66a3;
+      }
+
+      .btn-pink {
+        background-color: #ff66a3;
+        color: white;
+        border: none;
+        transition: background-color 0.3s;
+      }
+
+      .btn-pink:hover {
+        background-color: #ff3385;
+      }
+
+      .card {
+        border: none;
+        border-radius: 10px;
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      .footer {
+        background-color: #ff66a3;
+        /* border-top: 2px solid #ff66a3; */
+      }
+
+      .footer .text-pink {
+        font-size: 1rem;
+      }
+      .glass {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      .glass:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="background-color: #ff66a3"
+    >
+      <a class="navbar-brand" style="color: white" href="#">KnowDem</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#" onclick="showAssessment()"
+              >Assessment</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#" onclick="showCamera()"
+              >Virtual Buddy</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#" onclick="showScrapBook()"
+              >Scrap Book</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- <div id="assessment" class="row ">
+        <div class="col-3 col-s-3 menu">
+      <ul>
+        <li>The Flight</li>
+        <li>The City</li>
+        <li>The Island</li>
+        <li>The Food</li>
+      </ul>
+    </div -->
+    <div class="container d-flex flex-column" id="assessment">
+      <div class="card shadow p-4 mb-4">
+        <div class="card-body">
+          <h2 id="question" class="card-title text-pink"></h2>
+          <div class="form-group">
+            <textarea
+              class="form-control"
+              id="myInput"
+              rows="4"
+              placeholder="Type your answer here..."
+            ></textarea>
+          </div>
+          <button class="btn btn-pink btn-block col-2 m-2" onclick="nextQuestion()">
+            Next
+          </button>
+          <button class="btn btn-pink btn-block col-2" onclick="startRecognition()">
+            Answer Question
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="camera"
+      class="container justify-content-center align-items-center d-none"
+      style="flex-direction: column"
+    >
+<div><img src="./images/ProfilePicture.jpg" class="d-block w-100" alt="Photo 2" /></div>
+      <video id="videoElement" autoplay playsinline></video>
+      <div>
+        <button class="btn btn-pink" id="startButton">Start Camera</button>
+        <button class="btn btn-pink" id="stopButton">Stop Camera</button>
+      </div>
+      <div class="para">
+        <h1> Virtual Buddy</h1>
+        <p>Virtual Buddy which wll be psychologists, yoga and meditation trainers from across gloabe who can be trained to work closely with Admiral Nurses</p>
+        <p>Virtual Buddy can help maintain cognitive level and speech level of person affected. </p>
+      </div>
+    </div>
+    
+    <div
+      id="photoCarousel"
+      class="carousel slide d-none"
+      data-ride="carousel"
+      style="
+        width: 35%;
+        align-items: center;
+        margin: auto;
+        height: 500px;
+        margin-bottom: 60px;
+        margin-top: 20px;
+      "
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./images/1.png" class="d-block w-100" alt="Photo 1" />
+        </div>
+        <div class="carousel-item">
+          <img src="./images/2.png" class="d-block w-100" alt="Photo 2" />
+        </div>
+        <div class="carousel-item">
+          <img src="./images/3.png" class="d-block w-100" alt="Photo 3" />
+        </div>
+        <div class="carousel-item">
+          <img src="./images/4.png" class="d-block w-100" alt="Photo 4" />
+        </div>
+        <div class="carousel-item">
+          <img src="./images/5.png" class="d-block w-100" alt="Photo 5" />
+        </div>
+        <div class="carousel-item">
+          <img src="./images/6.png" class="d-block w-100" alt="Photo 6" />
+        </div>
+        <div class="carousel-item">
+          <img src="./images/7.png" class="d-block w-100" alt="Photo 7" />
+        </div>
+        <div class="carousel-item">
+          <img src="./images/8.png" class="d-block w-100" alt="Photo 8" />
+        </div>
+        <div class="carousel-item">
+          <img src="./images/9.png" class="d-block w-100" alt="Photo 9" />
+        </div>
+        <div class="carousel-item">
+          <img src="./images/10.png" class="d-block w-100" alt="Photo 10" />
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#photoCarousel"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#photoCarousel"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+      <div class="para">
+        <h1>Virtual ScrapBook</h1>
+        <p>Feature of Virtual ScrapBook can help Buddy to interact and maintain speech levels and practice techniques like two finger tests and memory refresh during sessions</p>
+      </div>
+    </div>
+    
+  </body>
+  <script src="jquery.min.js"></script>
+  <!--script src="filter.js"></script-->
+  <!-- <script src="listen.js"></script> -->
+  <script>
+    const questions = [
+      "Question # 1. What year is it ?",
+      "Question # 2. What month is it ?",
+      "Question # 3. What time is it to the nearest hour ?",
+      "Question # 4. Count back from 20 to 1.",
+      "Question # 5. Say month of the year in Reverse order ",
+      "Question # 6. Tell me name & address I gave you earlier ",
+      "Question # 7. Please listen carefully, I am going to say three words, That I want you to repeat back to me now and try to remember. Morning, Evening, Night"
+    ];
+    const responses = [];
+    let currentQuestionIndex = 0;
+    function delay(ms) {
+      console.log("delay called");
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+     function showQuestion() {
+      document.getElementById("question").innerText =
+        questions[currentQuestionIndex];
+      var currentIndex = currentQuestionIndex + 1;
+      var questionIndex = "q" + currentIndex + "PageBody";
+      askQuestion();
+    }
+    function askQuestion() {
+        const questionText = document.getElementById("question").innerText;
+        const speech = new SpeechSynthesisUtterance(questionText);
+        window.speechSynthesis.speak(speech);
+      }
+      function startRecognition() {
+        if (!("webkitSpeechRecognition" in window)) {
+          alert("Your browser doesn't support speech recognition. Try Chrome.");
+          return;
+        }
+
+        const recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = "en-US";
+
+        recognition.onstart = function () {
+          console.log("Voice recognition started. Speak into the microphone.");
+        };
+
+        recognition.onresult = function (event) {
+          const transcript = event.results[0][0].transcript;
+          document.getElementById("myInput").value = transcript;
+          responses.push({
+            question: questions[currentQuestionIndex],
+            answer: transcript,
+          });
+        };
+
+        recognition.onerror = function (event) {
+          console.error("Speech recognition error", event.error);
+        };
+
+        recognition.onend = function () {
+          console.log("Voice recognition ended.");
+        };
+
+        recognition.start();
+      }
+    function nextQuestion() {
+
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        document.getElementById("myInput").value = "";
+        showQuestion();
+      } else {
+        alert("You have completed the assessment!");
+        console.log("Responses :", responses);
+         window.location.href = 'reportPage.html'
+      }
+    }
+    document.addEventListener("DOMContentLoaded", (event) => {
+        showQuestion();
+      });
+    // Show the first question on page load
+
+    function login() {
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+
+      if (!email.value || !password.value) {
+        alert("Fill all the details");
+      } else {
+        if (email.value === "abc@email.com" && password.value === "abc") {
+          console.log(email, password);
+          window.location.href = "/afterLogin.html";
+        }
+      }
+    }
+    
+    
+    function showAssessment() {
+  console.log("show assessment");
+    
+  document.getElementById("assessment").classList.remove("d-none");
+  document.getElementById("assessment").classList.add("d-flex");
+  document.getElementById("camera").classList.add("d-none");
+  document.getElementById("photoCarousel").classList.add("d-none");
+}
+
+function showCamera() {
+  console.log("show camera");
+  document.getElementById("assessment").classList.remove("d-flex");
+  document.getElementById("assessment").classList.add("d-none");
+  document.getElementById("camera").classList.remove("d-none");
+  document.getElementById("camera").classList.add("d-flex");
+  document.getElementById("photoCarousel").classList.add("d-none");
+}
+
+function showScrapBook() {
+  console.log("show scrap book");
+  document.getElementById("assessment").classList.remove("d-flex");
+  document.getElementById("assessment").classList.add("d-none");
+  document.getElementById("assessment").classList.add("d-none");
+  document.getElementById("camera").classList.remove("d-flex");
+  document.getElementById("camera").classList.add("d-none");
+  document.getElementById("photoCarousel").classList.remove("d-none");
+}
+
+    const videoElement = document.getElementById("videoElement");
+    const startButton = document.getElementById("startButton");
+    const stopButton = document.getElementById("stopButton");
+    let stream;
+
+    // Function to start the camera
+    async function startCamera() {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: true,
+        });
+        videoElement.srcObject = stream;
+      } catch (err) {
+        console.error("Error accessing media devices.", err);
+      }
+    }
+
+    // Function to stop the camera
+    function stopCamera() {
+      if (stream) {
+        const tracks = stream.getTracks();
+        tracks.forEach((track) => track.stop());
+        videoElement.srcObject = null;
+      }
+    }
+
+    // Event listeners for buttons
+    startButton.addEventListener("click", startCamera);
+    stopButton.addEventListener("click", stopCamera);
+  </script>
+</html>
